@@ -1,0 +1,1759 @@
+[
+  {
+    "id": "64a394e0fce3d76f",
+    "type": "tab",
+    "label": "UPS SMS",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "610eee00d98ac086",
+    "type": "serial in",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS IN",
+    "serial": "529753990ab94831",
+    "x": 150,
+    "y": 1080,
+    "wires": [
+      [
+        "581817e7a0ba5ac6",
+        "e3aa6ff2d8e6fa9f"
+      ]
+    ]
+  },
+  {
+    "id": "4eeef5dfe45f9546",
+    "type": "debug",
+    "z": "64a394e0fce3d76f",
+    "name": "debug Serial IN",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 220,
+    "y": 1280,
+    "wires": []
+  },
+  {
+    "id": "7d33f2f0f1057761",
+    "type": "inject",
+    "z": "64a394e0fce3d76f",
+    "name": "Request Data",
+    "props": [],
+    "repeat": "2",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "1",
+    "topic": "",
+    "x": 220,
+    "y": 260,
+    "wires": [
+      [
+        "27ba66149f512e45",
+        "f8d6cfb16ba7546b"
+      ]
+    ]
+  },
+  {
+    "id": "7662c98c0b72ceb8",
+    "type": "serial out",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS OUT",
+    "serial": "529753990ab94831",
+    "x": 880,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "0df48df24b0d6602",
+    "type": "debug",
+    "z": "64a394e0fce3d76f",
+    "name": "debug OUT",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 890,
+    "y": 540,
+    "wires": []
+  },
+  {
+    "id": "27ba66149f512e45",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "getUpsStatus",
+    "func": "//PEDE STATS\nmsg.payload = Buffer.from(\"51ffffffffb30d\", \"hex\")\nreturn msg;\n\n\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 260,
+    "wires": [
+      [
+        "7662c98c0b72ceb8",
+        "0df48df24b0d6602"
+      ]
+    ]
+  },
+  {
+    "id": "581817e7a0ba5ac6",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "toHexString",
+    "func": "const toHexString = (bytes) => {\n  return Array.from(bytes, (byte) => {\n    return ('0' + (byte & 0xff).toString(16)).slice(-2);\n  }).join(' ');\n};\n\nvar hexString = toHexString(msg.payload);\nmsg.payload = hexString;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 190,
+    "y": 1200,
+    "wires": [
+      [
+        "4eeef5dfe45f9546"
+      ]
+    ]
+  },
+  {
+    "id": "58be25f9ed1c8b0d",
+    "type": "inject",
+    "z": "64a394e0fce3d76f",
+    "d": true,
+    "name": "Request Data",
+    "props": [],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "1",
+    "topic": "",
+    "x": 210,
+    "y": 340,
+    "wires": [
+      [
+        "2007b16b607d7de0"
+      ]
+    ]
+  },
+  {
+    "id": "2007b16b607d7de0",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "d": true,
+    "name": "getUpsName",
+    "func": "msg.payload = Buffer.from(\"49ffffffffbb0d\", \"hex\")\nreturn msg;\n\n\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 470,
+    "y": 340,
+    "wires": [
+      [
+        "0df48df24b0d6602",
+        "7662c98c0b72ceb8"
+      ]
+    ]
+  },
+  {
+    "id": "ab98d8d4ee54704a",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "start10sBatteryTest",
+    "func": "msg.payload = Buffer.from(\"54001000009c0d\", \"hex\")\nreturn msg;\n\n\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 420,
+    "wires": [
+      [
+        "0df48df24b0d6602",
+        "7662c98c0b72ceb8"
+      ]
+    ]
+  },
+  {
+    "id": "36d4d65c124e0220",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_lastinputVac",
+    "func": "var temp = '0x' + msg.payload.substring(2,6)\nlet out = parseInt(temp, 16)/10;\nmsg.payload = out;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 600,
+    "y": 820,
+    "wires": [
+      [
+        "a3fae101f0e3df88"
+      ]
+    ]
+  },
+  {
+    "id": "e3aa6ff2d8e6fa9f",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "processaDados",
+    "func": "const toHexString = (bytes) => {\n  return Array.from(bytes, (byte) => {\n    return ('0' + (byte & 0xff).toString(16)).slice(-2);\n  }).join('');\n};\n\n//transforma em string\nvar hexString = toHexString(msg.payload);\n\n//valida se eh um pacote de dados\nif (hexString.substring(0,2) == '3d' && hexString.substring(34,36) == '0d'  ) {\n  msg.payload = hexString;\n  return msg;\n}\n//se nao for, retorna null\nelse {\n  return null;\n}",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 340,
+    "y": 920,
+    "wires": [
+      [
+        "36d4d65c124e0220",
+        "8d347805909a7081",
+        "e845f8a6fe777eee",
+        "af8f829a59e607f0",
+        "6120a2f58f173147",
+        "193c76b256bdd692",
+        "e89093833f3bdb1c",
+        "07f4073e841f89b4"
+      ]
+    ]
+  },
+  {
+    "id": "8d347805909a7081",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_inputVac",
+    "func": "var temp = '0x' + msg.payload.substring(6,10)\nlet out = parseInt(temp, 16)/10;\nmsg.payload = out;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 590,
+    "y": 880,
+    "wires": [
+      [
+        "3c1b6371d66a9167"
+      ]
+    ]
+  },
+  {
+    "id": "a3fae101f0e3df88",
+    "type": "ha-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_lastinputVac",
+    "entityConfig": "2d5b593a86dfb63d",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 910,
+    "y": 820,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "3c1b6371d66a9167",
+    "type": "ha-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_inputVac",
+    "entityConfig": "fa058dc9ee54d1fb",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 900,
+    "y": 880,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "e845f8a6fe777eee",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_outputVac",
+    "func": "var temp = '0x' + msg.payload.substring(10,14)\nlet out = parseInt(temp, 16)/10;\nmsg.payload = out;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 600,
+    "y": 940,
+    "wires": [
+      [
+        "63ac5331608830f0"
+      ]
+    ]
+  },
+  {
+    "id": "63ac5331608830f0",
+    "type": "ha-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_outputVac",
+    "entityConfig": "58f9fcdff27f9c8e",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 900,
+    "y": 940,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "af8f829a59e607f0",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_outputPower",
+    "func": "var temp = '0x' + msg.payload.substring(14,18)\nlet out = parseInt(temp, 16)/10;\nmsg.payload = out;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 610,
+    "y": 1000,
+    "wires": [
+      [
+        "35f043d907bcdd09",
+        "604ab6cffc48fac4"
+      ]
+    ]
+  },
+  {
+    "id": "35f043d907bcdd09",
+    "type": "ha-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_outputPower",
+    "entityConfig": "36c189eb8d0e9a61",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 910,
+    "y": 1000,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "6120a2f58f173147",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_outputHz",
+    "func": "var temp = '0x' + msg.payload.substring(18,22)\nlet out = parseInt(temp, 16)/10;\nmsg.payload = out;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 600,
+    "y": 1200,
+    "wires": [
+      [
+        "b75b1876c5435e86"
+      ]
+    ]
+  },
+  {
+    "id": "b75b1876c5435e86",
+    "type": "ha-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_outputHz",
+    "entityConfig": "a8e797911bdba88f",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 900,
+    "y": 1200,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "193c76b256bdd692",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_batterylevel",
+    "func": "var temp = '0x' + msg.payload.substring(22,26)\nlet out = parseInt(temp, 16)/10;\nmsg.payload = out;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 600,
+    "y": 1260,
+    "wires": [
+      [
+        "4ae6c3ccf950eaad"
+      ]
+    ]
+  },
+  {
+    "id": "4ae6c3ccf950eaad",
+    "type": "ha-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_batterylevel",
+    "entityConfig": "719e5481bded6454",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 910,
+    "y": 1260,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "e89093833f3bdb1c",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_temperatureC",
+    "func": "var temp = '0x' + msg.payload.substring(26,30)\nlet out = parseInt(temp, 16)/10;\nmsg.payload = out;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 610,
+    "y": 1320,
+    "wires": [
+      [
+        "be02f278b3a9ed9e"
+      ]
+    ]
+  },
+  {
+    "id": "be02f278b3a9ed9e",
+    "type": "ha-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_temperatureC",
+    "entityConfig": "44812bc11efe69c2",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 910,
+    "y": 1320,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "07f4073e841f89b4",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_flags",
+    "func": "var temp = '0x' + msg.payload.substring(30,32)\nlet out = parseInt(temp, 16);\nmsg.payload = out;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 440,
+    "y": 1440,
+    "wires": [
+      [
+        "635399ee660669e0",
+        "58bbe7f9c8c56caf",
+        "ade5ad55091de83b",
+        "7358a7dd669a4666",
+        "5de974f058fdcf6a",
+        "217752069585e563",
+        "1396022c7b006c54",
+        "d564fe11adf0647a"
+      ]
+    ]
+  },
+  {
+    "id": "635399ee660669e0",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_BatteryInUse",
+    "func": "msg.payload = Boolean((msg.payload >> 7) & 1);\nreturn (msg);",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 1440,
+    "wires": [
+      [
+        "5d4354c94757f66c"
+      ]
+    ]
+  },
+  {
+    "id": "58bbe7f9c8c56caf",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_BatteryLow",
+    "func": "msg.payload = Boolean((msg.payload >> 6) & 1);\nreturn (msg);",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 640,
+    "y": 1500,
+    "wires": [
+      [
+        "8786509490038176"
+      ]
+    ]
+  },
+  {
+    "id": "8786509490038176",
+    "type": "ha-binary-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_batteryLow",
+    "entityConfig": "eaf0b82c90dda894",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 910,
+    "y": 1500,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "5d4354c94757f66c",
+    "type": "ha-binary-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_batteryInUse",
+    "entityConfig": "703bf7697fd8138b",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 910,
+    "y": 1440,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ade5ad55091de83b",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_Bypass",
+    "func": "msg.payload = Boolean((msg.payload >> 5) & 1);\nreturn (msg);",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 630,
+    "y": 1560,
+    "wires": [
+      [
+        "78eb23f138a3a829"
+      ]
+    ]
+  },
+  {
+    "id": "78eb23f138a3a829",
+    "type": "ha-binary-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_bypass",
+    "entityConfig": "b2bd9c906b6be62c",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 890,
+    "y": 1560,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "7358a7dd669a4666",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_Boost",
+    "func": "msg.payload = Boolean((msg.payload >> 4) & 1);\nreturn (msg);",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 630,
+    "y": 1620,
+    "wires": [
+      [
+        "e1d2485c7fec7e0a"
+      ]
+    ]
+  },
+  {
+    "id": "e1d2485c7fec7e0a",
+    "type": "ha-binary-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_boost",
+    "entityConfig": "ef646ebc160272e3",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 890,
+    "y": 1620,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "5de974f058fdcf6a",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_UpsOk",
+    "func": "msg.payload = Boolean((msg.payload >> 3) & 1);\nreturn (msg);",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 630,
+    "y": 1680,
+    "wires": [
+      [
+        "3644a764230acc59"
+      ]
+    ]
+  },
+  {
+    "id": "3644a764230acc59",
+    "type": "ha-binary-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_upsOk",
+    "entityConfig": "97847f84273f586b",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 890,
+    "y": 1680,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "217752069585e563",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_TestActive",
+    "func": "msg.payload = Boolean((msg.payload >> 2) & 1);\nreturn (msg);",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 640,
+    "y": 1740,
+    "wires": [
+      [
+        "98c6f5305233a8d2"
+      ]
+    ]
+  },
+  {
+    "id": "98c6f5305233a8d2",
+    "type": "ha-binary-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_testActive",
+    "entityConfig": "b8089c03c357ee22",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 900,
+    "y": 1740,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "1396022c7b006c54",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_ShutdownActive",
+    "func": "msg.payload = Boolean((msg.payload >> 1) & 1);\nreturn (msg);",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 660,
+    "y": 1800,
+    "wires": [
+      [
+        "ec09707f411283f4"
+      ]
+    ]
+  },
+  {
+    "id": "ec09707f411283f4",
+    "type": "ha-binary-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_ShutdownActive",
+    "entityConfig": "781115d78f7da249",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 920,
+    "y": 1800,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "d564fe11adf0647a",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_BeepOn",
+    "func": "msg.payload = Boolean(msg.payload & 1);\nreturn (msg);",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 630,
+    "y": 1860,
+    "wires": [
+      [
+        "3d09e5f20bbd7459"
+      ]
+    ]
+  },
+  {
+    "id": "3d09e5f20bbd7459",
+    "type": "ha-binary-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_BeepOn",
+    "entityConfig": "59019761c8f6c993",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 900,
+    "y": 1860,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "09fb1131a4392248",
+    "type": "ha-button",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS Start 10s Battery Test",
+    "version": 0,
+    "debugenabled": false,
+    "outputs": 1,
+    "entityConfig": "6da2fc1f95fb30ac",
+    "outputProperties": [],
+    "x": 170,
+    "y": 420,
+    "wires": [
+      [
+        "ab98d8d4ee54704a"
+      ]
+    ]
+  },
+  {
+    "id": "f6c41742e667b8d1",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "start5mBatteryTest",
+    "func": "msg.payload = Buffer.from(\"54012c00007f0d\", \"hex\")\nreturn msg;\n\n\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 520,
+    "wires": [
+      [
+        "7662c98c0b72ceb8",
+        "0df48df24b0d6602"
+      ]
+    ]
+  },
+  {
+    "id": "c37bc854e2849692",
+    "type": "ha-button",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS Start 5m Battery Test",
+    "version": 0,
+    "debugenabled": false,
+    "outputs": 1,
+    "entityConfig": "2adc93bd0ab89e5c",
+    "outputProperties": [],
+    "x": 170,
+    "y": 520,
+    "wires": [
+      [
+        "f6c41742e667b8d1"
+      ]
+    ]
+  },
+  {
+    "id": "d5cc35e6bb99b129",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "stopBatteryTest",
+    "func": "msg.payload = Buffer.from(\"44ffffffffc00d\", \"hex\")\nreturn msg;\n\n\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 460,
+    "y": 680,
+    "wires": [
+      [
+        "7662c98c0b72ceb8",
+        "0df48df24b0d6602"
+      ]
+    ]
+  },
+  {
+    "id": "e8417237257dbb37",
+    "type": "ha-button",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS Stop Battery Test",
+    "version": 0,
+    "debugenabled": false,
+    "outputs": 1,
+    "entityConfig": "d8e8b21f0c8a0df4",
+    "outputProperties": [],
+    "x": 160,
+    "y": 680,
+    "wires": [
+      [
+        "d5cc35e6bb99b129"
+      ]
+    ]
+  },
+  {
+    "id": "44b39f4e71adb513",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "startBatteryTestUntilLow",
+    "func": "msg.payload = Buffer.from(\"4Cffffffff\", \"hex\")\nreturn msg;\n\n\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 600,
+    "wires": [
+      [
+        "0df48df24b0d6602",
+        "7662c98c0b72ceb8"
+      ]
+    ]
+  },
+  {
+    "id": "55603a4d253feab6",
+    "type": "ha-button",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS Start Battery Test Until Low",
+    "version": 0,
+    "debugenabled": false,
+    "outputs": 1,
+    "entityConfig": "7f42019c853ad788",
+    "outputProperties": [],
+    "x": 190,
+    "y": 600,
+    "wires": [
+      [
+        "44b39f4e71adb513"
+      ]
+    ]
+  },
+  {
+    "id": "f8d6cfb16ba7546b",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "setSMSTotalCapacityInVA",
+    "func": "var smsTotalCapacity = 2000;\n\nflow.set(\"smsTotalCapacity\", smsTotalCapacity);\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 510,
+    "y": 140,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "604ab6cffc48fac4",
+    "type": "function",
+    "z": "64a394e0fce3d76f",
+    "name": "get_outputPowerInWatts",
+    "func": "msg.payload = ((msg.payload/100) * parseInt(flow.get(\"smsTotalCapacity\")) * 0.7).toFixed(2);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 670,
+    "y": 1080,
+    "wires": [
+      [
+        "53b8ed7d4e99ec1b"
+      ]
+    ]
+  },
+  {
+    "id": "53b8ed7d4e99ec1b",
+    "type": "ha-sensor",
+    "z": "64a394e0fce3d76f",
+    "name": "SMS_outputPowerInWatts",
+    "entityConfig": "eea6ef27b15c2deb",
+    "version": 0,
+    "state": "payload",
+    "stateType": "msg",
+    "attributes": [],
+    "inputOverride": "allow",
+    "outputProperties": [],
+    "x": 940,
+    "y": 1080,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "529753990ab94831",
+    "type": "serial-port",
+    "name": "SMS",
+    "serialport": "/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_AEAVb11CN11-if00-port0",
+    "serialbaud": "2400",
+    "databits": "8",
+    "parity": "none",
+    "stopbits": "1",
+    "waitfor": "",
+    "dtr": "none",
+    "rts": "none",
+    "cts": "none",
+    "dsr": "none",
+    "newline": "0x0d",
+    "bin": "bin",
+    "out": "char",
+    "addchar": "",
+    "responsetimeout": "10000"
+  },
+  {
+    "id": "2d5b593a86dfb63d",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Last Input Voltage",
+    "version": "6",
+    "entityType": "sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Last Input Voltage"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": "voltage"
+      },
+      {
+        "property": "unit_of_measurement",
+        "value": "V"
+      },
+      {
+        "property": "state_class",
+        "value": "measurement"
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "fa058dc9ee54d1fb",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Input Voltage",
+    "version": "6",
+    "entityType": "sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Input Voltage"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": "voltage"
+      },
+      {
+        "property": "unit_of_measurement",
+        "value": "V"
+      },
+      {
+        "property": "state_class",
+        "value": "measurement"
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "58f9fcdff27f9c8e",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Output Voltage",
+    "version": "6",
+    "entityType": "sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Output Voltage"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": "voltage"
+      },
+      {
+        "property": "unit_of_measurement",
+        "value": "V"
+      },
+      {
+        "property": "state_class",
+        "value": "measurement"
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "36c189eb8d0e9a61",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Output Power",
+    "version": "6",
+    "entityType": "sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Output Power"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": "power_factor"
+      },
+      {
+        "property": "unit_of_measurement",
+        "value": "%"
+      },
+      {
+        "property": "state_class",
+        "value": "measurement"
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "a8e797911bdba88f",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Output Frequency",
+    "version": "6",
+    "entityType": "sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Output Frequency"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": "frequency"
+      },
+      {
+        "property": "unit_of_measurement",
+        "value": "Hz"
+      },
+      {
+        "property": "state_class",
+        "value": ""
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "719e5481bded6454",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Battery Level",
+    "version": "6",
+    "entityType": "sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Battery Level"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": "battery"
+      },
+      {
+        "property": "unit_of_measurement",
+        "value": "%"
+      },
+      {
+        "property": "state_class",
+        "value": ""
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "44812bc11efe69c2",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Temperature",
+    "version": "6",
+    "entityType": "sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Temperature"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": "temperature"
+      },
+      {
+        "property": "unit_of_measurement",
+        "value": "°C"
+      },
+      {
+        "property": "state_class",
+        "value": ""
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "eaf0b82c90dda894",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Battery Low",
+    "version": "6",
+    "entityType": "binary_sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Battery Low"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": "battery"
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "703bf7697fd8138b",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Battery In Use",
+    "version": "6",
+    "entityType": "binary_sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Battery In Use"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": "plug"
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "b2bd9c906b6be62c",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Bypass",
+    "version": "6",
+    "entityType": "binary_sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Bypass"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": "power"
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "ef646ebc160272e3",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Boost",
+    "version": "6",
+    "entityType": "binary_sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Boost"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": "power"
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "97847f84273f586b",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS UPS Ok",
+    "version": "6",
+    "entityType": "binary_sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS UPS Ok"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": "safety"
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "b8089c03c357ee22",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Test Active",
+    "version": "6",
+    "entityType": "binary_sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Test Active"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": ""
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "781115d78f7da249",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Shutdown Active",
+    "version": "6",
+    "entityType": "binary_sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Shutdown Active"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": ""
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "59019761c8f6c993",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Beep On",
+    "version": "6",
+    "entityType": "binary_sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Beep On"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": ""
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "6da2fc1f95fb30ac",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Start 10s Battery Test",
+    "version": "6",
+    "entityType": "button",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Start 10s Battery Test"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": ""
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "2adc93bd0ab89e5c",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Start 5m Battery Test",
+    "version": "6",
+    "entityType": "button",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Start 5m Battery Test"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": ""
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "d8e8b21f0c8a0df4",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Stop Battery Test",
+    "version": "6",
+    "entityType": "button",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Stop Battery Test"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": ""
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "7f42019c853ad788",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Start Battery Test Until Low",
+    "version": "6",
+    "entityType": "button",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Start Battery Test Until Low"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": ""
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "eea6ef27b15c2deb",
+    "type": "ha-entity-config",
+    "server": "9074df74.a057",
+    "deviceConfig": "",
+    "name": "SMS Output Power In Watts",
+    "version": "6",
+    "entityType": "sensor",
+    "haConfig": [
+      {
+        "property": "name",
+        "value": "SMS Output Power In Watts"
+      },
+      {
+        "property": "icon",
+        "value": ""
+      },
+      {
+        "property": "entity_picture",
+        "value": ""
+      },
+      {
+        "property": "entity_category",
+        "value": ""
+      },
+      {
+        "property": "device_class",
+        "value": "power"
+      },
+      {
+        "property": "unit_of_measurement",
+        "value": "W"
+      },
+      {
+        "property": "state_class",
+        "value": ""
+      }
+    ],
+    "resend": false,
+    "debugEnabled": false
+  },
+  {
+    "id": "9074df74.a057",
+    "type": "server",
+    "name": "Home Assistant",
+    "addon": true
+  }
+]
