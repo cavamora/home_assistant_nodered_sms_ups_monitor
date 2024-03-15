@@ -916,7 +916,7 @@
     "type": "function",
     "z": "64a394e0fce3d76f",
     "name": "startBatteryTestUntilLow",
-    "func": "msg.payload = Buffer.from(\"4Cffffffff\", \"hex\")\nreturn msg;\n\n\n\n",
+    "func": "msg.payload = Buffer.from(\"4Cffffffffb80d\", \"hex\")\nreturn msg;\n\n\n\n",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
