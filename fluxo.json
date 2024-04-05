@@ -1030,7 +1030,7 @@
     "id": "2d5b593a86dfb63d",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Last Input Voltage",
     "version": "6",
     "entityType": "sensor",
@@ -1071,7 +1071,7 @@
     "id": "fa058dc9ee54d1fb",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Input Voltage",
     "version": "6",
     "entityType": "sensor",
@@ -1112,7 +1112,7 @@
     "id": "58f9fcdff27f9c8e",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Output Voltage",
     "version": "6",
     "entityType": "sensor",
@@ -1153,7 +1153,7 @@
     "id": "36c189eb8d0e9a61",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Output Power",
     "version": "6",
     "entityType": "sensor",
@@ -1194,7 +1194,7 @@
     "id": "a8e797911bdba88f",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Output Frequency",
     "version": "6",
     "entityType": "sensor",
@@ -1235,7 +1235,7 @@
     "id": "719e5481bded6454",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Battery Level",
     "version": "6",
     "entityType": "sensor",
@@ -1276,7 +1276,7 @@
     "id": "44812bc11efe69c2",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Temperature",
     "version": "6",
     "entityType": "sensor",
@@ -1317,7 +1317,7 @@
     "id": "eaf0b82c90dda894",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Battery Low",
     "version": "6",
     "entityType": "binary_sensor",
@@ -1340,7 +1340,7 @@
       },
       {
         "property": "device_class",
-        "value": "battery"
+        "value": ""
       }
     ],
     "resend": false,
@@ -1350,7 +1350,7 @@
     "id": "703bf7697fd8138b",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Battery In Use",
     "version": "6",
     "entityType": "binary_sensor",
@@ -1373,7 +1373,7 @@
       },
       {
         "property": "device_class",
-        "value": "plug"
+        "value": ""
       }
     ],
     "resend": false,
@@ -1383,7 +1383,7 @@
     "id": "b2bd9c906b6be62c",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Bypass",
     "version": "6",
     "entityType": "binary_sensor",
@@ -1406,7 +1406,7 @@
       },
       {
         "property": "device_class",
-        "value": "power"
+        "value": ""
       }
     ],
     "resend": false,
@@ -1416,7 +1416,7 @@
     "id": "ef646ebc160272e3",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Boost",
     "version": "6",
     "entityType": "binary_sensor",
@@ -1439,7 +1439,7 @@
       },
       {
         "property": "device_class",
-        "value": "power"
+        "value": ""
       }
     ],
     "resend": false,
@@ -1449,7 +1449,7 @@
     "id": "97847f84273f586b",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS UPS Ok",
     "version": "6",
     "entityType": "binary_sensor",
@@ -1472,7 +1472,7 @@
       },
       {
         "property": "device_class",
-        "value": "safety"
+        "value": ""
       }
     ],
     "resend": false,
@@ -1482,7 +1482,7 @@
     "id": "b8089c03c357ee22",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Test Active",
     "version": "6",
     "entityType": "binary_sensor",
@@ -1515,7 +1515,7 @@
     "id": "781115d78f7da249",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Shutdown Active",
     "version": "6",
     "entityType": "binary_sensor",
@@ -1548,7 +1548,7 @@
     "id": "59019761c8f6c993",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Beep On",
     "version": "6",
     "entityType": "binary_sensor",
@@ -1581,7 +1581,7 @@
     "id": "6da2fc1f95fb30ac",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Start 10s Battery Test",
     "version": "6",
     "entityType": "button",
@@ -1614,7 +1614,7 @@
     "id": "2adc93bd0ab89e5c",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Start 5m Battery Test",
     "version": "6",
     "entityType": "button",
@@ -1647,7 +1647,7 @@
     "id": "d8e8b21f0c8a0df4",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Stop Battery Test",
     "version": "6",
     "entityType": "button",
@@ -1680,7 +1680,7 @@
     "id": "7f42019c853ad788",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Start Battery Test Until Low",
     "version": "6",
     "entityType": "button",
@@ -1713,7 +1713,7 @@
     "id": "eea6ef27b15c2deb",
     "type": "ha-entity-config",
     "server": "9074df74.a057",
-    "deviceConfig": "",
+    "deviceConfig": "b4b6864e55d59d3f",
     "name": "SMS Output Power In Watts",
     "version": "6",
     "entityType": "sensor",
@@ -1755,5 +1755,14 @@
     "type": "server",
     "name": "Home Assistant",
     "addon": true
+  },
+  {
+    "id": "b4b6864e55d59d3f",
+    "type": "ha-device-config",
+    "name": "Nobreak SMS Gamer",
+    "hwVersion": "0029601",
+    "manufacturer": "SMS",
+    "model": "2000VA",
+    "swVersion": ""
   }
 ]
